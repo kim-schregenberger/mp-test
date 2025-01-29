@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code structuring</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/gqy2zvu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+
+<header>
+    <!-- NAV -->
+    <div class="navbar show-initial">
+        <div class="logo"><a href="index.html"><img src="./images/logo.svg" alt="Logo" style="width: 25px; height: 25px;"></a></div>
+        <div class="menu-btn" onclick="toggleNav()">MENU</div>
+    </div>
+
+    <div class="nav-overlay" id="navOverlay">
+        <div class="logo-overlay logo"><a href="index.html"><img src="./images/logo.svg" alt="Logo" style="width: 25px; height: 25px; visibility: hidden;"></a></div>
+        <div class="close-btn" onclick="toggleNav()"><img src="./images/cross.svg" alt="" style="width: 20px; height: 20px;"></div>
+        <a href="erfahrungen.html" onclick="closeNav()">Erfahrungsberichte</a>
+        <a href="info.html" onclick="navigateToSection('betroffene')">Informationen für Betroffene</a>
+        <a href="info.html#angehörige" onclick="navigateToSection('angehörige')">Informationen für Angehörige</a>
+        <a href="spenden.html" onclick="closeNav()">Spenden</a>
+    </div>
+</header>
+
+<body>
+
+    <div class="bg-container">
+        <img src="./images/bg.png" alt="">
+    </div>
+
+    <!-- Loading screen -->
+    <!-- <div id="loading-screen" class="loading">
+        <div class="spinner"></div>
+        <button id="enter-button" class="enter" disabled><img src="./images/logo.svg" alt=""></button>
+        <div class="loading-content">
+            <p>
+                Gemeinsam gegen Brustkrebs. <br><br>
+                Warnung. Diese Seite enthält echte Erfahrungsberichte von Brustkrebs-Betroffenen.
+            </p>
+        </div>
+      </div>
+      
+       -->
+
+      
+    <!-- Add "show-initial" class to grain if don't want it in stages -->
+    <div class="grain"></div>
+
+    <main>
+            <!-- Sections -->
+            <section class="hero start show-initial">
+                <p>Worte, Gesten, Nähe – sie können mehr bewirken, als wir oft denken. Diese Seite lädt dich ein, zu verstehen und zu unterstützen.</p>
+                <span>Gemeinsam gegen Brustkrebs.</span>
+                <h1>Gemeinsam mutig, <br> gemeinsam stark</h1>
+            </section>
+    
+            <section class="testimonial show-initial">
+                <p class="quote">&bdquo;Mein Partner, meine Freundin, die mich zur Chemotherapie begleitete, gaben mir in dieser Zeit viel Kraft.&ldquo;</p>
+                <span>- Erfahrung von Brigitte</span>
+            </section>
+
+    
+            <!-- SCROLL SECTION-->
+            <section class="info scroll show-initial">
+                <div class="section title scroll-section" id="section-start">
+                    <h2>In der Schweiz werden jedes Jahr rund 6500 Frauen und einige Männer mit der Diagnose Brustkrebs konfrontiert.</h2>
+                    <span>Diesen Weg soll niemand alleine gehen müssen</span>
+                </div>
+
+                <div class="section title early-detection show-initial" id="section-0">
+                    <h2>Brustkrebs, im Frühstadium erkannt, ist in den meisten Fällen gut behandelbar.</h2>
+                    <span><a href="https://www.swisscancerscreening.ch/de/"> Früherkennung kann Leben retten - Informiere dich unter: Swiss Cancer Screening</a></span>
+                </div>
+            
+            <!-- Stage One -->
+                <div class="stage one scroll-section canvas-text" id="section-1">
+                    <span>Stadium 1</span>
+                    <h2>Im Frühstadium ist der Tumor noch klein und nur auf die Brust beschränkt.</h2>
+                    <button class="read-more" id="button-stage-1">Mehr zum Stadium</button>
+                </div>
+            
+            <!-- Stage Two -->
+                <div class="stage two scroll-section" id="section-2">
+                    <span>Stadium 2</span>
+                    <h2>Der Tumor ist bereits grösser und kann die Lymphknoten betreffen.</h2>
+                    <button class="read-more" id="button-stage-2">Mehr zum Stadium</button>
+                </div>
+
+            <!-- Stage Three -->
+                <div class="stage three scroll-section" id="section-3">
+                    <span>Stadium 3</span>
+                    <h2>Der Krebs hat sich auf nahegelegene Bereiche, wie die Lymphknoten, ausgebreitet.</h2>
+                    <button class="read-more" id="button-stage-3">Mehr zum Stadium</button>
+                </div>
+
+
+            <!-- Stage Four -->
+                <div class="stage four scroll-section" id="section-4">
+                    <span>Stadium 4</span>
+                    <h2>Der Krebs hat sich in andere Organe und Knochen ausgebreitet. <br>Lebensqualität steht im Vordergrund.</h2>
+                    <button class="read-more" id="button-stage-4">Mehr zum Stadium</button>
+                </div>
+            </section>
+
+
+            <!-- STAGES SECTION-->
+             <section class="stages-section">
+                 <div class="canvas stages stage-one">
+                     <div>
+                         <h2>Stadium 1</h2>
+                         <p>
+                            Ein lokal begrenztes Karzinom, ist nur auf die Brust beschränkt und wird häufig durch Selbstabtastung der Brust oder durch eine Mammografie entdeckt.
+                            Da sich der Tumor hier nicht auf andere Bereiche des Körpers ausgebreitet hat, stehen die Chancen auf Heilung gut.
+                        </p>
+                         <ul>
+                            <li class="whole-model active" data-camera-position="">Übersicht</li>
+                            <li data-camera-position="-10, -2.5, 2.5">Milchdrüse
+                                <p>Entsteht der Krebs in den Milchdrüsen spricht man von lobulärem Brustkrebs</p>
+                            </li>
+                            <li data-camera-position="-4, 2, 8.5">Milchgänge
+                                <p>Entsteht der Krebs in den Milchgängen spricht man von duktalem Brustkrebs</p>
+                            </li>
+                            <li data-camera-position="-6, 2, 1.5">Krebszelle
+                                <p>Hier hat der Krebs die Milchgänge befallen. Der duktale Brustkrebs ist die häufigste Form und betrifft rund 70 - 80% der Patientinnen.</p>
+                            </li>
+                         </ul>
+                         <button class="go-back" data-section="section-1">Zurück</button>
+                     </div>
+                 </div>  
+     
+                 <div class="canvas stages stage-two">
+                     <div>
+                         <h2>Stadium 2</h2>
+                         <p>
+                            Die Krebszelle hat die Milchgänge befallen. Dies ist oft nicht spürbar und wird nur durch eine Untersuchung der Brust durch Selbstabtastung oder Mammografie entdeckt.
+                    
+                         </p>
+                         <ul>
+                            <li class="whole-model active" data-camera-position="">Übersicht</li>
+                            <li data-camera-position="-10, -2.5, 2.5">Milchdrüse
+                                <p>Entsteht der Krebs in den Milchdrüsen spricht man von lobulärem Brustkrebs</p>
+                            </li>
+                            <li data-camera-position="-4, 2, 8.5">Milchgänge
+                                <p>Entsteht der Krebs in den Milchgängen spricht man von duktalem Brustkrebs</p>
+                            </li>
+                            <li data-camera-position="-6, 2, 1.5">Krebszellen
+                                <p>Hier hat der Krebs die Milchgänge befallen. Der duktale Brustkrebs ist die häufigste Form und betrifft rund 70 - 80% der Patientinnen.</p>
+                            </li>
+                         </ul>
+                         <button class="go-back" data-section="section-2">Zurück</button>
+                     </div>
+                 </div>
+     
+                 <div class="canvas stages stage-three">
+                     <div>
+                         <h2>Stadium 3</h2>
+                         <p>Die Krebszelle hat die Milchgänge befallen. Dies ist oft nicht spürbar und wird nur durch eine Untersuchung der Brust durch Selbstabtastung oder Mammografie entdeckt.</p>
+                         <ul>
+                            <li class="whole-model active" data-camera-position="">Übersicht</li>
+                            <!-- <li data-camera-position="-8, 2.5, -5.5">Brust mit Krebszellen</li> -->
+                            <li data-camera-position="-4, 2.5, 8.5">Brust mit Krebszellen
+                                <p>Text</p>
+                            </li>
+                            <li data-camera-position="-8, -8, -5.5">Lymphknoten
+                                <p>Text</p>
+                            </li>
+                            <li data-camera-position="-12, -5.5, 2.5">Befallene Lymphknoten
+                                <p>Text</p>
+                            </li>
+                         </ul>
+                         <button class="go-back" data-section="section-3">Zurück</button>
+                     </div>
+                 </div>
+     
+                 <div class="canvas stages stage-four">
+                     <div>
+                         <h2>Stadium 4</h2>
+                         <p>Die Krebszelle hat die Milchgänge befallen. Dies ist oft nicht spürbar und wird nur durch eine Untersuchung der Brust durch Selbstabtastung oder Mammografie entdeckt.</p>
+                         <ul>
+                            <li class="whole-model active" data-camera-position="">Übersicht</li>
+                            <li data-camera-position="-8, 0, 0">Organe
+                                <p>Oragane Wie Lunge, Leber und Hirn sind befallen</p>
+                            </li>
+                            <li data-camera-position="-10, 0, 0">Knochen
+                                <p>Knochen wie die Hüfte sind befallen</p>
+                            </li>
+                         </ul>
+                         <button class="go-back" data-section="section-4">Zurück</button>
+                     </div>
+                 </div> 
+             </section>
+
+
+            <section class="testimonial final show-initial">
+                <!-- <span>Was ich mir von Aussenstehenden wünsche?</span> -->
+                <!-- <p class="quote">&bdquo;Von Aussenstehenden wünsche ich mir ein offenes Ohr und keine Scheu sich zu melden.<br> Jede Nachricht bedeutet unglaublich viel!&ldquo;</p> -->
+                <p class="quote">&bdquo;Nützen Sie die Zeit. Verbringen sie so viel Zeit wie möglich mit Ihren Nächsten.&ldquo;</p>
+                <span>- Erfahrung von Christian</span>
+            </section>
+    
+            <section class="cta end show-initial">
+                <div class="cta-flex">
+                    <h2>Es sind oft bereits kleine Dinge die einen grossen Unterschied machen</h2>
+                    <span>Informiere dich und hilf mit im Kampf gegen Brustkrebs.</span>
+                </div>
+                <div class="cta-flex">
+                    <ul>
+                        <li><a href="info.html">Informationen für Betroffene</a></li>
+                        <li><div class="line"></div></li>
+                        <li><a href="info.html#angehörige">Informationen für Angehörige</a></li>
+                        <li><div class="line"></div></li>
+                        <li><a href="erfahrungen.html">Erfahrungsberichte</a></li>
+                        <li><div class="line"></div></li>
+                        <li><a href="spenden.html">Spenden</a></li>
+                        <li><div class="line"></div></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Canvas -->
+            <div class="canvas particles">
+                <canvas class="webgl"></canvas>
+            </div>
+
+            <!-- Audio -->
+            <div class="audio">
+                <audio id="backgroundaudio" autoplay loop muted>
+                    <source src="./audio/MP Score Piano.mp3" type="audio/mpeg">
+                    <source src="./audio/MP Score Piano.wav" type="audio/wav">
+                  Your browser does not support the audio element.
+                  </audio>
+                  <a onClick="togglePlay()">
+                    <div class="switch">
+                      <div class="equalizer">
+                          <div class="equalizer__bar"></div>
+                          <div class="equalizer__bar"></div>
+                          <div class="equalizer__bar"></div>
+                          <div class="equalizer__bar"></div>
+                          <div class="equalizer__bar"></div>
+                          <div class="equalizer__bar"></div>
+                      </div>
+                    </div>
+                    </a>                    
+            </div>
+
+            <!-- <i class="fa-solid fa-arrow-up-long icon"></i> -->
+
+    </main>
+    
+    <footer class="show-initial">
+        <!-- <p>Design & Development by Kim | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p> -->
+    </footer>
+    
+    
+    <!-- Script -->
+    <script type="module" src="./script.js"></script>
+    <script type="module" src="./animation.js"></script>
+    
+
+    <script>
+        // Navbar
+        function toggleNav() {
+            const navOverlay = document.getElementById('navOverlay')
+            navOverlay.classList.toggle('nav-active')
+        }
+    
+        // Close nav
+        function closeNav() {
+            const navOverlay = document.getElementById('navOverlay')
+            navOverlay.classList.remove('nav-active')
+        }
+    
+        // Navigate to id and close nav
+        function navigateToSection(sectionId) {
+            closeNav()
+            const section = document.getElementById(sectionId)
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' })
+            }
+        }
+    
+        // Close nav when clicking a link, even on the same page
+        document.querySelectorAll('.nav-overlay a').forEach((link) => {
+            link.addEventListener('click', (event) => {
+                const href = event.target.getAttribute('href')
+                if (href.startsWith("#")) {
+                    const sectionId = href.substring(1)
+                    navigateToSection(sectionId)
+                } else {
+                    closeNav()
+                }
+            })
+        })
+
+
+
+        // Audio
+        var myAudio = document.getElementById("backgroundaudio");
+        var isPlaying = false;
+
+        function togglePlay() 
+        {
+            if (isPlaying) {
+                myAudio.pause(); // Pause the audio
+            } else {
+                myAudio.muted = false; 
+                myAudio.play(); // Play the audio
+            }
+            isPlaying = !isPlaying; // Toggle the play state
+        }
+
+        myAudio.onplaying = function() {
+        isPlaying = true;
+        };
+        myAudio.onpause = function() {
+        isPlaying = false;
+        };
+
+        //animated speaker
+        var btn = document.getElementsByClassName('switch');
+
+        for (var x = 0; x < btn.length; x++){
+        ( function(_x){
+            btn[_x].addEventListener('click', function(){
+            if (btn[_x].classList.contains('mute')){
+                btn[_x].classList.remove('mute');
+            } else {
+                btn[_x].classList.add('mute');
+            }
+            });
+        })(x);
+        }
+                
+    </script>
+    
+    
+</body>
+</html>
