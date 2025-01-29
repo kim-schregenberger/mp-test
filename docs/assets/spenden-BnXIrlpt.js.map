@@ -1,0 +1,1 @@
+{"version":3,"file":"spenden-BnXIrlpt.js","sources":["../../src/main.js"],"sourcesContent":["import Experience from './Experience/Experience.js';\n\nconst experience = new Experience(document.querySelector('canvas.webgl'))\n"],"names":["Experience"],"mappings":"6EAEmB,IAAIA,EAAW,SAAS,cAAc,cAAc,CAAC"}
