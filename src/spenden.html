@@ -19,10 +19,10 @@
         <div class="nav-overlay" id="navOverlay">
             <div class="logo-overlay logo"><a href="index.html"><img src="./images/arrow.svg" alt="Logo" style="height: 10px;"></a></div>
             <div class="close-btn" onclick="toggleNav()"><img src="./images/cross.svg" alt="" style="width: 20px; height: 20px;"></div>
+            <a href="erfahrungen.html" onclick="closeNav()">Erfahrungsberichte</a>
             <a href="info.html" onclick="navigateToSection('betroffene')">Informationen für Betroffene</a>
             <a href="info.html#angehörige" onclick="navigateToSection('angehörige')">Informationen für Angehörige</a>
-            <a href="erfahrungen.html" onclick="closeNav()">Erfahrungsberichte</a>
-            <a href="#" onclick="closeNav()">Spenden</a>
+            <a href="#" onclick="closeNav()">Unterstützen</a>
         </div>
     </header>
 
@@ -36,7 +36,7 @@
 
             <!-- Sections -->
             <section class="hero">
-                <p>Deine Unterstützung zählt und wird geschätzt. Setze Dich ein für bessere Heilungschancen. </p>
+                <p>Deine Unterstützung zählt und wird geschätzt. Setze Dich ein für Prävention und bessere Heilungschancen. </p>
                 <span>Gemeinsam gegen Brustkrebs.</span>
                 <h1>Schenke Hoffnung mit einer Spende</h1>
                 <a href="https://participate.krebsliga.ch/Kim-Schregenberger/myevent">
@@ -50,13 +50,45 @@
             </div> -->
     </main>
 
-    <footer>
-        <p>Design & Development by Kim | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+    <footer class="show-initial">
+        <!-- Audio -->
+        <div class="audio">
+            <audio id="backgroundaudio" autoplay loop muted>
+                <source src="./audio/MP Score Piano.mp3" type="audio/mpeg">
+                <source src="./audio/MP Score Piano.wav" type="audio/wav">
+              Your browser does not support the audio element.
+              </audio>
+              <a onClick="togglePlay()">
+                <div class="switch">
+                  <div class="equalizer">
+                      <div class="equalizer__bar"></div>
+                      <div class="equalizer__bar"></div>
+                      <div class="equalizer__bar"></div>
+                      <div class="equalizer__bar"></div>
+                      <div class="equalizer__bar"></div>
+                      <div class="equalizer__bar"></div>
+                  </div>
+                </div>
+                </a>                    
+        </div>
+
+        <div class="impressum">
+            <p>
+                <a href="#">Impressum | Datenschutz</a>
+            </p>
+        </div>
+
+        <div class="to-top">
+            <a href="#">
+                <img src="./images/ArrowUp.svg" alt="">
+            </a>
+        </div>
     </footer>
     
     
+    
     <!-- Script -->
-    <script type="module" src="./main.js"></script>
+    <!-- <script type="module" src="./main.js"></script> -->
     <script type="module" src="./animation.js"></script>
 
     <script>
@@ -93,6 +125,44 @@
                 }
             })
         })
+
+
+                // Audio
+                var myAudio = document.getElementById("backgroundaudio");
+        var isPlaying = false;
+
+        function togglePlay() 
+        {
+            if (isPlaying) {
+                myAudio.pause(); // Pause the audio
+            } else {
+                myAudio.muted = false; 
+                myAudio.play(); // Play the audio
+            }
+            isPlaying = !isPlaying; // Toggle the play state
+        }
+
+        myAudio.onplaying = function() {
+        isPlaying = true;
+        };
+        myAudio.onpause = function() {
+        isPlaying = false;
+        };
+
+        //animated speaker
+        var btn = document.getElementsByClassName('switch');
+
+        for (var x = 0; x < btn.length; x++){
+        ( function(_x){
+            btn[_x].addEventListener('click', function(){
+            if (btn[_x].classList.contains('mute')){
+                btn[_x].classList.remove('mute');
+            } else {
+                btn[_x].classList.add('mute');
+            }
+            });
+        })(x);
+        }
     </script>
     
 </body>

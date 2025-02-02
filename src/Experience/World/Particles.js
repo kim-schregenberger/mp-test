@@ -151,7 +151,7 @@ export default class Particles {
         vertexShader: particlesVertexShader,
         fragmentShader: particlesFragmentShader,
         uniforms: {
-            uSize: new THREE.Uniform(0.065),
+            uSize: new THREE.Uniform(0.055),
             uResolution: new THREE.Uniform(
                 new THREE.Vector2(
                     this.experience.sizes.width * this.experience.sizes.pixelRatio,
@@ -226,7 +226,10 @@ export default class Particles {
     
 
     setScrollObserver() {
+        const scrollSection = document.querySelector('.scroll');
         const sections = document.querySelectorAll('.scroll-section');
+        const hideSections = document.querySelectorAll('.final, .end, .footer');
+        const canvas = document.querySelector('.webgl'); // The Three.js canvas
     
         const observerOptions = {
             root: null, // The viewport
@@ -246,19 +249,27 @@ export default class Particles {
                             gsap.to(oldGpgpu.particlesVariable.material.uniforms.uFlowFieldFrequency, { value: 0.2, duration: 0.5 });
                             gsap.to(oldGpgpu.particlesVariable.material.uniforms.uFlowFieldInfluence, { value: 2.0, duration: 0.5 });
                         }
-    
-                        // Create new particles after transition
+                        
+                        // Fade out the canvas BEFORE changing the model
+                        gsap.to(canvas, { opacity: 0, duration: 0.5, onComplete: () => {
+                        // Change model only after opacity is 0
+
                         setTimeout(() => {
-                            this.createParticles(index); // Update model
+                            this.createParticles(index);
                             this.currentModelIndex = index;
-                        }, -1000); // Ensure smooth transition timing
+                        }, -1000);
+
+                        // this.createParticles(index);
+                        // this.currentModelIndex = index;
+
+                        // Fade the canvas back in AFTER changing the model
+                        gsap.to(canvas, { opacity: 1, duration: 0.5 });
+                    }});
                     }
                 }
             });
         }, observerOptions);
     
-    
-        
         sections.forEach((section) => observer.observe(section));
     
         window.addEventListener('scroll', () => {
@@ -279,8 +290,48 @@ export default class Particles {
                 }
             });
         }); 
+
+        // Observe each inner section inside the `.scroll` section
+        sections.forEach((section) => observer.observe(section));
+
+
+        // Observe the entire `.scroll` section for entry/exit detection
+        const hideObserver = new IntersectionObserver((entries) => {
+            let shouldHide = false; // Track if canvas should be hidden
+    
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    shouldHide = true; // If any hide section is visible, set to true
+                }
+            });
+    
+            if (shouldHide) {
+                this.fadeOutCanvas(); // Hide canvas
+            } else {
+                this.fadeInCanvas(); // Show canvas
+            }
+        }, observerOptions);
+    
+        // Observe all hide sections
+        hideSections.forEach((section) => hideObserver.observe(section));
     }
 
+    fadeInCanvas() {
+        const canvas = document.querySelector('.webgl');
+        if (canvas) {
+            gsap.to(canvas, { opacity: 1, duration: 1 });
+        }
+    }
+
+    fadeOutCanvas() {
+        const canvas = document.querySelector('.webgl');
+        if (canvas) {
+            gsap.to(canvas, { opacity: 0, duration: 1 });
+        }
+    }
+
+    
+    
     update() 
     {
         if (this.particlesPoints) {

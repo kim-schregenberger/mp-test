@@ -3,18 +3,19 @@ import Experience from './Experience/Experience.js';
 import { gsap } from "gsap"; 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 
 
 const canvas = document.querySelector('canvas.webgl');
 const experience = new Experience(canvas);
+window.experience = experience; // Store globally
 
 let particles = experience.world.particles;  // Will be updated after `resources.on('ready')`
 const stages = experience.world.stage;
 
 let currentStageNumber = null;
+
 
 function hideElements(selector) {
     document.querySelectorAll(selector).forEach((el) => el.classList.add('hide'));
@@ -39,7 +40,7 @@ const stageColors = {
     1: '#CCB7C4', 
     2: '#997D92', 
     3: '#776273',  
-    4: '#211d20'
+    4: '#2E2A34'
     // initial: '#211d20' 
 };
 
@@ -122,6 +123,26 @@ function destroyStage() {
 }
 
 
+document.querySelectorAll('.explore').forEach((button) => 
+    {
+        button.addEventListener('click', () =>
+        {
+            document.querySelectorAll('.explore').forEach((el) => el.classList.add('active'));
+            document.querySelectorAll('.grain').forEach((el) => el.classList.add('active'));
+            document.querySelectorAll('.stages-section').forEach((el) => {
+                el.classList.add('active'); 
+    
+                // GSAP Fade-in Effect
+                gsap.fromTo(el, 
+                    { opacity: 0 },  // Start from opacity 0
+                    { opacity: 1, duration: 5, ease: "power3.out" } // Fade-in over 1 second
+                );
+            });
+        })
+    })
+
+    
+
 // Leave Stage and go back to Particles
 document.querySelectorAll('.go-back').forEach((button) => {
     button.addEventListener('click', () => {
@@ -135,13 +156,16 @@ document.querySelectorAll('.go-back').forEach((button) => {
         changeSceneBackgroundColor(null);
 
         document.querySelectorAll('.stages-section ul li').forEach((el) => el.classList.remove('active'));
-        document.querySelectorAll('.whole-model').forEach((el) => el.classList.add('active'));
+        document.querySelectorAll('.overview').forEach((el) => el.classList.add('active'));
+        document.querySelectorAll('.grain').forEach((el) => el.classList.remove('active'));
+        document.querySelectorAll('.stages-section').forEach((el) => el.classList.remove('active'));
+        document.querySelectorAll('.explore').forEach((el) => el.classList.remove('active'));
 
         // Scroll to a specific section
         const sectionId = event.target.getAttribute('data-section');
         const targetSection = document.querySelector(`#${sectionId}`);
         if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     });
 });
@@ -166,6 +190,7 @@ experience.world.resources.on('ready', () => {
 document.querySelectorAll('.stages-section ul li').forEach((item) => {
     item.addEventListener('click', (event) => {
         const cameraPosition = event.target.getAttribute('data-camera-position');
+        
         if (item.classList.contains('whole-model')) {
             resetCameraPosition(); // Reset the model and camera to initial state
         } else if (cameraPosition) {
@@ -226,34 +251,44 @@ function resetCameraPosition() {
 const loadingScreen = document.getElementById('loading-screen');
 const enterButton = document.getElementById('enter-button');
 
-// Keep the Enter button visible but disabled initially
-enterButton.disabled = true;
+const hasLoadedBefore = sessionStorage.getItem('hasLoadedBefore');
 
-// Once resources are ready, enable the Enter button
-experience.world.resources.on('ready', () => {
-    console.log('Resources loaded, enabling Enter button...');
-    
-    // Update button state
-    enterButton.disabled = false;
-    enterButton.classList.add('enabled');
-    enterButton.textContent = 'Erkunden'
-});
+if (hasLoadedBefore) {
+    // Hide the loading screen immediately
+    loadingScreen.style.display = 'none';
+    initializeExperience(); // Start the experience without showing the loading screen
+} else {
+    // Show loading screen only on first load
+    enterButton.disabled = true;
 
-// Add event listener for the Enter button
-enterButton.addEventListener('click', () => {
-    if (!enterButton.disabled) {
-        console.log('User clicked Enter, starting experience...');
+    experience.world.resources.on('ready', () => {
+        console.log('Resources loaded, enabling Enter button...');
+        
+        // Enable the button once resources are ready
+        enterButton.disabled = false;
+        enterButton.classList.add('enabled');
+        enterButton.textContent = 'Erkunden';
+    });
 
-        // Fade out the loading screen
-        loadingScreen.classList.add('fade-out');
-        setTimeout(() => {
-            loadingScreen.style.display = 'none';
-        }, 500); // Match the transition duration
+    enterButton.addEventListener('click', () => {
+        if (!enterButton.disabled) {
+            console.log('User clicked Enter, starting experience...');
+            
+            // Fade out loading screen
+            loadingScreen.classList.add('fade-out');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500); // Match the transition duration
 
-        // Initialize the experience
-        initializeExperience();
-    }
-});
+            // Mark experience as loaded in session storage
+            sessionStorage.setItem('hasLoadedBefore', 'true');
+
+            // Initialize the experience
+            initializeExperience();
+        }
+    });
+}
+
 
 // Function to initialize the experience
 function initializeExperience() {

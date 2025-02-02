@@ -7,7 +7,7 @@ export default [
     {
         name: 'stagesModel',
         type: 'gltfModel',
-        path: 'models/stadiennewdef.glb'
+        path: 'models/staddeff.glb'
     }
 
 ]

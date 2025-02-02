@@ -30,6 +30,13 @@ export default class Stage {
         }
 
         this.currentStage = null  // Track the current stage model
+
+        // Initialize raycaster and mouse vector
+        this.raycaster = new THREE.Raycaster();
+        this.mouse = new THREE.Vector2();
+
+    // Listen for mouse clicks
+    window.addEventListener('click', (event) => this.onMouseClick(event));
     }
 
     // Device detection function
@@ -72,21 +79,24 @@ export default class Stage {
         // **APPLY DEVICE-SPECIFIC TRANSFORMATIONS**
         if (this.isMobile) {
             this.gltfChild.scale.set(1.2, 1.2, 1.2);
-            console.log(this.gltfChild.scale);
+            console.log("gltfScale",this.gltfChild.scale);
 
             this.gltfChild.position.set(0, -2.5, 0);
-            console.log(this.gltfChild.position);
+            console.log("gltfPosition",this.gltfChild.position);
 
             this.initialCameraPosition = { x: -15, y: 0, z: 1.5 };
+            console.log("initialCameraPosition",this.initialCameraPosition);
+
             
         } else {
             this.gltfChild.scale.set(2, 2, 2);
-            console.log(this.gltfChild.scale);
+            console.log("gltfScale",this.gltfChild.scale);
 
-            this.gltfChild.position.set(1, -1, -4);
-            console.log(this.gltfChild.position);
+            this.gltfChild.position.set(1, -1, -3.5);
+            console.log("gltfPosition",this.gltfChild.position);
 
             this.initialCameraPosition = { x: -15, y: 0, z: 1.5 };
+            console.log("initialCameraPosition",this.initialCameraPosition);
         }
                 // Store the initial model state
                 this.initialModelState = 
@@ -104,6 +114,13 @@ export default class Stage {
     
         // Track the current stage model
         this.currentStage = this.gltfChild;
+
+        // if (this.gltfChild.children.length > 0) {
+        //     this.gltfChild.children.forEach((child, index) => {
+        //         console.log(`Child ${index}: Name: ${child.name}, Position:`, child.position);
+        //     });
+        // }
+        
     }
 
     resetStage() {
@@ -125,6 +142,26 @@ export default class Stage {
     }
 
     
+    // Check clicked position on model
+    onMouseClick(event) {
+        if (!this.currentStage) return; // No model loaded yet
+    
+        // Convert mouse position to normalized device coordinates (-1 to +1)
+        const rect = this.renderer.domElement.getBoundingClientRect();
+        this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    
+        // Update raycaster
+        this.raycaster.setFromCamera(this.mouse, this.camera);
+    
+        // Check for intersections
+        const intersects = this.raycaster.intersectObject(this.currentStage, true);
+    
+        if (intersects.length > 0) {
+            const intersectionPoint = intersects[0].point;
+            console.log('Clicked position:', intersectionPoint);
+        }
+    }
     
 
     // Update method (called every frame)

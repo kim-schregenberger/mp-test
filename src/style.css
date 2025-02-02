@@ -27,7 +27,7 @@ body
     position: relative;
     z-index: 1;
 
-    padding: 2rem 3rem;
+    padding: 2rem 3rem 0rem 3rem;
     background-color: #211d20;
     
     /* Font */
@@ -35,19 +35,9 @@ body
     font-family: "halyard-text", sans-serif;
     text-align: start;
 
-    background-image: url("images/bg.png");
-    background-size: cover;
-}
-
-body.body-erfahrungen, body.body-info
-{
-    background: rgb(33, 29, 32);
-    /* background: linear-gradient(0deg, rgb(195, 157, 183) 0%,rgb(33, 29, 32) 100%); */
-
     /* background-image: url("images/bg.png");
     background-size: cover; */
 }
-
 
 /* .bg-container {
     position: fixed;
@@ -71,15 +61,16 @@ body.body-erfahrungen, body.body-info
 
 .bg-container img {
     position: fixed;
-    width: 110%;  /* Make the image bigger so edges are always hidden */
-    height: 110%;
+    width: 150%;  /* Make the image bigger so edges are always hidden */
+    height: 150%;
     object-fit: cover;
-    object-position: left 45%;
+    object-position: left 75%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(0deg);
     z-index: -3;
-    filter: blur(2px);
+    filter: blur(4px);
+    transition: transform 1s ease-in-out;
 }
 
 
@@ -90,7 +81,7 @@ header, footer
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 
@@ -136,6 +127,12 @@ header, footer
     padding: 0rem 3rem;
 }
 .nav-overlay a:hover {
+    color: #C39DB7;
+}
+a:hover {
+    color: #C39DB7;
+}
+li:hover {
     color: #C39DB7;
 }
 .nav-active {
@@ -197,6 +194,7 @@ header, footer
     border-radius: 50%;
     border-color: white;
     border: none;
+    border: 1px solid rgb(195, 157, 183);
     color: white;
     background-color: transparent;
     cursor: not-allowed;
@@ -209,6 +207,7 @@ header, footer
     cursor: pointer;
     opacity: 1;
     /* background-color: #c39db748; */
+    background-color: rgba(195, 157, 183, 0.33);
     border: 1px solid white;
   }
   
@@ -302,7 +301,7 @@ p
     font-family: "inter", sans-serif;
     padding-bottom: 1rem;
 }
-span, span a
+span
 {
     font-size: 16px;
     font-weight: 300;
@@ -310,6 +309,11 @@ span, span a
     font-family: "halyard-text", sans-serif;
     color: #B995AE;
     /* color: #a58b9d; */
+}
+
+#section-0 a
+{
+    color: #B995AE;
 }
 
 footer p
@@ -353,17 +357,18 @@ canvas {
 .grain
 {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+    width: 150%;
+    height: 150%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
     /* background-color: #211d208b; */
     /* background-color: #0c0a0c8b; */
-    background-color: #0c0a0c8b;
+    /* background-color: #0c0a0c8b; */
+    background-color: #0c0a0c61;
     z-index: -1;
     filter: brightness(0.2);
 }
-
 
 ul
 {
@@ -394,7 +399,7 @@ li p
     left: 0;
     width: 100vw;
     height: 100vh;
-    padding-top: 4rem;
+    padding-top: 2rem;
     /* background-color: #ff54d455; */
 }    
 
@@ -484,11 +489,17 @@ main .scroll
 
 
 /* Interact with canvas through html */
-/* .stages-section, .grain {
+.stages-section.active, .grain.active {
     pointer-events: none;
-} */
+}
 
-.go-back
+.grain.active
+{
+    background-color: #0c0a0c4c;
+}
+
+
+.go-back, li
 {
     pointer-events: all;
 }
@@ -546,7 +557,10 @@ button:hover
     background-color: #c39db78d;
 }
 
-
+.explore.active
+{
+    background-color: #c39db78d;
+}
 
 
 section.cta div ul li
@@ -568,7 +582,10 @@ section.cta div ul li div
 }
 
 
-
+.cta-flex
+{
+    padding-bottom: 1rem;
+}
 
 
 
@@ -581,6 +598,22 @@ section.cta div ul li div
     bottom: 0px;
     left: 0px;
     /* width: 100%; */
+}
+
+.to-top img
+{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    height: 20px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.impressum
+{
+    padding-left: 40px;
 }
 
 .backgroundaudio {
@@ -682,15 +715,27 @@ section.cta div ul li div
     /* 01: HTML, Body */
     body
     {
-        padding: 2rem 6rem;
+        padding: 2rem 6rem 0rem 6rem;
         background-color: #211d20;
     }
+
+    .equalizer
+    {
+        margin-left: 6rem;
+    }
+
+    .to-top img
+    {
+        margin-right: 6rem;
+    }
+
     
     h1
     {
         font-size: 80px;
         font-weight: 300;
         line-height: 95%;
+        font-family: "halyard-text", sans-serif;
     }
     h2, p.quote
     {
@@ -703,15 +748,23 @@ section.cta div ul li div
         font-size: 20px;
         font-weight: 300;
         line-height: 95%;
+        font-family: "inter", sans-serif;
     }
     span
     {
         font-size: 20px;
         font-weight: 300;
         line-height: 95%;
+        font-family: "halyard-text", sans-serif;
         color: #C39DB7;
     }
-
+    
+    li
+    {
+        font-size: 20px;
+        font-weight: 300;
+        font-family: "inter", sans-serif;
+    }
 
     /* 02: Header, Footer */
     /* 03: Fonts */
@@ -758,9 +811,20 @@ section.cta div ul li div
         /* 01: HTML, Body */
         body
         {
-            padding: 2rem 10rem;
+            padding: 2rem 10rem 0rem 10rem;
             background-color: #211d20;
         }
+
+        .equalizer
+        {
+            margin-left: 10rem;
+        }
+
+        .to-top img
+        {
+            margin-right: 10rem;
+        }
+
 
         /* 02: Header, Footer */
 
@@ -822,10 +886,10 @@ section.cta div ul li div
         {
             display: flex;
             flex-direction: row;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             gap: 2rem;
-            height: 65vh;
+            height: auto;
         }
 
         section.cta div.cta-flex,  section.infopage div.cta, section.infopage div.text
@@ -837,6 +901,11 @@ section.cta div ul li div
         .cta-flex h2, .cta h2
         {   
             padding-top: 0;
+        }
+
+        .end
+        {
+            min-height: 65vh;
         }
 
         section.cta div ul

@@ -24,44 +24,51 @@
         <a href="erfahrungen.html" onclick="closeNav()">Erfahrungsberichte</a>
         <a href="info.html" onclick="navigateToSection('betroffene')">Informationen für Betroffene</a>
         <a href="info.html#angehörige" onclick="navigateToSection('angehörige')">Informationen für Angehörige</a>
-        <a href="spenden.html" onclick="closeNav()">Spenden</a>
+        <a href="spenden.html" onclick="closeNav()">Unterstützen</a>
     </div>
 </header>
 
 <body>
-
-    <div class="bg-container">
-        <img src="./images/bg.png" alt="">
-    </div>
-
-    <!-- Loading screen -->
-    <!-- <div id="loading-screen" class="loading">
-        <div class="spinner"></div>
-        <button id="enter-button" class="enter" disabled><img src="./images/logo.svg" alt=""></button>
-        <div class="loading-content">
-            <p>
-                Gemeinsam gegen Brustkrebs. <br><br>
-                Warnung. Diese Seite enthält echte Erfahrungsberichte von Brustkrebs-Betroffenen.
-            </p>
-        </div>
-      </div>
-      
-       -->
-
-      
-    <!-- Add "show-initial" class to grain if don't want it in stages -->
-    <div class="grain"></div>
-
     <main>
+          <div class="bg-container">
+              <img src="./images/bg.png" alt="">
+          </div>
+      
+          <!-- Loading screen -->
+          <div id="loading-screen" class="loading">
+              <div class="bg-container">
+                  <img src="./images/bg.png" alt="">
+              </div>
+              <div class="grain"></div>
+              <div class="spinner"></div>
+              <button id="enter-button" class="enter" disabled><img src="./images/logo.svg" alt=""></button>
+              <div class="loading-content">
+                  <p>
+                      Gemeinsam gegen Brustkrebs. <br><br>
+                      Warnung. Diese Seite enthält echte Erfahrungsberichte von Brustkrebs-Betroffenen.
+                  </p>
+              </div>
+            </div>
+            
+
+        <!-- Add "show-initial" class to grain if don't want it in stages -->
+        <div class="grain"></div>
+
+            <!-- Canvas -->
+            <div class="canvas particles">
+                <canvas class="webgl"></canvas>
+            </div>
+
             <!-- Sections -->
-            <section class="hero start show-initial">
+            <section class="hero start show-initial" id="top">
                 <p>Worte, Gesten, Nähe – sie können mehr bewirken, als wir oft denken. Diese Seite lädt dich ein, zu verstehen und zu unterstützen.</p>
                 <span>Gemeinsam gegen Brustkrebs.</span>
                 <h1>Gemeinsam mutig, <br> gemeinsam stark</h1>
             </section>
     
             <section class="testimonial show-initial">
-                <p class="quote">&bdquo;Mein Partner, meine Freundin, die mich zur Chemotherapie begleitete, gaben mir in dieser Zeit viel Kraft.&ldquo;</p>
+                <!-- <p class="quote">&bdquo;Mein Partner, meine Freundin, die mich zur Chemotherapie begleitete, gaben mir in dieser Zeit viel Kraft.&ldquo;</p> -->
+                <p class="quote">&bdquo;Ich bin dankbar, dass ich während der Krankheitszeit in so guten Händen war.&ldquo;</p>
                 <span>- Erfahrung von Brigitte</span>
             </section>
 
@@ -69,7 +76,7 @@
             <!-- SCROLL SECTION-->
             <section class="info scroll show-initial">
                 <div class="section title scroll-section" id="section-start">
-                    <h2>In der Schweiz werden jedes Jahr rund 6500 Frauen und einige Männer mit der Diagnose Brustkrebs konfrontiert.</h2>
+                    <h2>In der Schweiz werden jedes Jahr rund 6600 Frauen und 60 Männer mit der Diagnose Brustkrebs konfrontiert.</h2>
                     <span>Diesen Weg soll niemand alleine gehen müssen</span>
                 </div>
 
@@ -82,21 +89,21 @@
                 <div class="stage one scroll-section canvas-text" id="section-1">
                     <span>Stadium 1</span>
                     <h2>Im Frühstadium ist der Tumor noch klein und nur auf die Brust beschränkt.</h2>
-                    <button class="read-more" id="button-stage-1">Mehr zum Stadium</button>
+                    <button class="read-more explore" id="button-stage-1">Stadium interaktiv erkunden</button>
                 </div>
             
             <!-- Stage Two -->
                 <div class="stage two scroll-section" id="section-2">
                     <span>Stadium 2</span>
-                    <h2>Der Tumor ist bereits grösser und kann die Lymphknoten betreffen.</h2>
-                    <button class="read-more" id="button-stage-2">Mehr zum Stadium</button>
+                    <h2>Der Tumor ist bereits grösser und kann umliegende Lymphknoten betreffen.</h2>
+                    <button class="read-more explore" id="button-stage-2">Stadium interaktiv erkunden</button>
                 </div>
 
             <!-- Stage Three -->
                 <div class="stage three scroll-section" id="section-3">
                     <span>Stadium 3</span>
-                    <h2>Der Krebs hat sich auf nahegelegene Bereiche, wie die Lymphknoten, ausgebreitet.</h2>
-                    <button class="read-more" id="button-stage-3">Mehr zum Stadium</button>
+                    <h2>Der Krebs hat sich auf umliegende Bereiche, wie die Lymphknoten, ausgebreitet.</h2>
+                    <button class="read-more explore" id="button-stage-3">Stadium interaktiv erkunden</button>
                 </div>
 
 
@@ -104,7 +111,7 @@
                 <div class="stage four scroll-section" id="section-4">
                     <span>Stadium 4</span>
                     <h2>Der Krebs hat sich in andere Organe und Knochen ausgebreitet. <br>Lebensqualität steht im Vordergrund.</h2>
-                    <button class="read-more" id="button-stage-4">Mehr zum Stadium</button>
+                    <button class="read-more explore" id="button-stage-4">Stadium interaktiv erkunden</button>
                 </div>
             </section>
 
@@ -119,18 +126,25 @@
                             Da sich der Tumor hier nicht auf andere Bereiche des Körpers ausgebreitet hat, stehen die Chancen auf Heilung gut.
                         </p>
                          <ul>
-                            <li class="whole-model active" data-camera-position="">Übersicht</li>
+                            <li class="whole-model overview active" data-camera-position="">Übersicht</li>
                             <li data-camera-position="-10, -2.5, 2.5">Milchdrüse
-                                <p>Entsteht der Krebs in den Milchdrüsen spricht man von lobulärem Brustkrebs</p>
+                                <p>Entsteht der Krebs in den Milchdrüsen spricht man von lobulärem Brustkrebs.</p>
                             </li>
                             <li data-camera-position="-4, 2, 8.5">Milchgänge
-                                <p>Entsteht der Krebs in den Milchgängen spricht man von duktalem Brustkrebs</p>
+                                <p>Entsteht der Krebs in den Milchgängen spricht man von duktalem Brustkrebs.</p>
                             </li>
                             <li data-camera-position="-6, 2, 1.5">Krebszelle
-                                <p>Hier hat der Krebs die Milchgänge befallen. Der duktale Brustkrebs ist die häufigste Form und betrifft rund 70 - 80% der Patientinnen.</p>
+                                <p>Hier hat der Krebs die Milchgänge befallen. Das duktale Karzinom ist die häufigste Form und betrifft rund 70% - 80% der Patientinnen.</p>
+                            </li>
+                            <li class="whole-model" data-camera-position="">Symptome
+                                <p>Anzeichen wie - Knoten oder Verhärtung in der Brust, Grössen- oder Formveränderung der Brust, Hautveränderungen oder Veränderungen der Brustwarze - können auf eine Brustkrebserkrankung hinweisen.</p>
+                            </li>
+                            <li class="whole-model" data-camera-position="">Behandlung
+                                <p>Die Behandlungsmethoden werden individuell auf die Betroffenen und deren Befund und Tumorprofil abgestimmt, können aber von einer Operation über Bestrahlung bis hin zu Chemo-, Antihormon- oder Immuntrherapie reichen.</p>
                             </li>
                          </ul>
                          <button class="go-back" data-section="section-1">Zurück</button>
+                         <!-- <button class="explore" data-section="section-1">Stadium selbst erkunden</button> -->
                      </div>
                  </div>  
      
@@ -138,60 +152,81 @@
                      <div>
                          <h2>Stadium 2</h2>
                          <p>
-                            Die Krebszelle hat die Milchgänge befallen. Dies ist oft nicht spürbar und wird nur durch eine Untersuchung der Brust durch Selbstabtastung oder Mammografie entdeckt.
-                    
+                            Der Tumor ist bereits etwas grösser oder hat sich auf nahegelegene Lymphknoten ausgedehnt, bleibt jedoch auf die Brustregion beschränkt. Die Erkrankung ist in diesem Stadium weiterhin gut behandelbar.
                          </p>
                          <ul>
-                            <li class="whole-model active" data-camera-position="">Übersicht</li>
-                            <li data-camera-position="-10, -2.5, 2.5">Milchdrüse
+                            <li class="whole-model overview active" data-camera-position="">Übersicht</li>
+                            <!-- <li data-camera-position="-10, -2.5, 2.5">Milchdrüse
                                 <p>Entsteht der Krebs in den Milchdrüsen spricht man von lobulärem Brustkrebs</p>
-                            </li>
+                            </li> -->
                             <li data-camera-position="-4, 2, 8.5">Milchgänge
-                                <p>Entsteht der Krebs in den Milchgängen spricht man von duktalem Brustkrebs</p>
+                                <p>Der Krebs in den Milchgängen ist bereits etwas grösser.</p>
                             </li>
                             <li data-camera-position="-6, 2, 1.5">Krebszellen
-                                <p>Hier hat der Krebs die Milchgänge befallen. Der duktale Brustkrebs ist die häufigste Form und betrifft rund 70 - 80% der Patientinnen.</p>
+                                <p>Neben dem Befall der Milchgänge kann der Tumor bereits nahegelegene Lymphknoten betreffen.</p>
+                            </li>
+                            <li class="whole-model" data-camera-position="">Symptome
+                                <p>Anzeichen wie - Knoten oder Verhärtung in der Brust, Grössen- oder Formveränderung der Brust, Hautveränderungen oder Veränderungen der Brustwarze - können auf eine Brustkrebserkrankung hinweisen.</p>
+                            </li>
+                            <li class="whole-model" data-camera-position="">Behandlung
+                                <p>Die Behandlungsmethoden werden individuell auf die Betroffenen und deren Befund und Tumorprofil abgestimmt, können aber von einer Operation über Bestrahlung bis hin zu Chemo-, Antihormon- oder Immuntrherapie reichen.</p>
                             </li>
                          </ul>
                          <button class="go-back" data-section="section-2">Zurück</button>
+                         <!-- <button class="explore" data-section="section-2">Stadium selbst erkunden</button> -->
                      </div>
                  </div>
      
                  <div class="canvas stages stage-three">
                      <div>
                          <h2>Stadium 3</h2>
-                         <p>Die Krebszelle hat die Milchgänge befallen. Dies ist oft nicht spürbar und wird nur durch eine Untersuchung der Brust durch Selbstabtastung oder Mammografie entdeckt.</p>
+                         <p>Das Karzinom ist weiter fortgeschritten und betrifft neben der Brust auch umliegendes Gewebe oder mehrere Lymphknoten. Die Behandlung erfordert meist eine Kombination verschiedener Therapieansätze, um die Erkrankung bestmöglich einzudämmen.</p>
                          <ul>
-                            <li class="whole-model active" data-camera-position="">Übersicht</li>
+                            <li class="whole-model overview active" data-camera-position="">Übersicht</li>
                             <!-- <li data-camera-position="-8, 2.5, -5.5">Brust mit Krebszellen</li> -->
-                            <li data-camera-position="-4, 2.5, 8.5">Brust mit Krebszellen
+                            <!-- <li data-camera-position="-8, 2, 8">Brust mit Krebszellen
                                 <p>Text</p>
+                            </li> -->
+                            <li data-camera-position="-10, 0, -10">Lymphknoten
+                                <p>Lymphknoten sind einige Milimeter grosse Sammelpunkte, welche Keime und Zellen aus der Lymphflüssigkeit filtern und damit eine wichtige Funktion im Rahmen der Immunabwehr übernehmen.</p>
                             </li>
-                            <li data-camera-position="-8, -8, -5.5">Lymphknoten
-                                <p>Text</p>
+                            <li data-camera-position="-10, -4, -8">Befallene Lymphknoten
+                                <p>In der Regel breitet sich Brustkrebs zunächst über die Gewebsflüssigkeit (Lymphe) in umliegende Lymphknoten aus. Bei rund 40% der Brustkrebserkrankungen sind auch Lymphknoten befallen.</p>
                             </li>
-                            <li data-camera-position="-12, -5.5, 2.5">Befallene Lymphknoten
-                                <p>Text</p>
+                            <li class="whole-model" data-camera-position="">Symptome
+                                <p>Anzeichen wie - Schwellungen an der Brust oder des Arms, Gewichtsverlust, anhaltende Müdigkeit oder allgemeines Unwohlsein - können auf eine fortgeschrittene Brustkrebserkrankung hinweisen.</p>
+                            </li>
+                            <li class="whole-model" data-camera-position="">Behandlung
+                                <p>Die Behandlungsmethoden werden individuell auf die Betroffenen und deren Befund und Tumorprofil abgestimmt, können aber von einer Operation über Bestrahlung bis hin zu Chemo-, Antihormon- oder Immuntrherapie reichen.</p>
                             </li>
                          </ul>
                          <button class="go-back" data-section="section-3">Zurück</button>
+                         <!-- <button class="explore" data-section="section-3">Stadium selbst erkunden</button> -->
                      </div>
                  </div>
      
                  <div class="canvas stages stage-four">
                      <div>
                          <h2>Stadium 4</h2>
-                         <p>Die Krebszelle hat die Milchgänge befallen. Dies ist oft nicht spürbar und wird nur durch eine Untersuchung der Brust durch Selbstabtastung oder Mammografie entdeckt.</p>
+                         <p>Wenn sich Krebszellen vom Zellverbund lösen und in ferne Organe eindringen, spricht man von metastasiertem Brustkrebs. 
+                            Eine vollständige Entfernung der Krebszellen aus dem Körper durch Therapie und damit eine Heilung zu erreichen, gilt dann als unwahrscheinlich. Die Erkrankung wird hier als chronisch bezeichnet.</p>
                          <ul>
-                            <li class="whole-model active" data-camera-position="">Übersicht</li>
-                            <li data-camera-position="-8, 0, 0">Organe
-                                <p>Oragane Wie Lunge, Leber und Hirn sind befallen</p>
+                            <li class="whole-model overview active" data-camera-position="">Übersicht</li>
+                            <li data-camera-position="-9, 0, 0">Organe und Knochen
+                                <p>Der Krebs kann Metastasen in unterschiedlichen Organen bilden, wie hier in Hirn, Lunge, Leber und Knochen (Hüfte).
+                                    Bei Betroffenen mit Metastasen in Haut und Knochen kann die Erkrankung mit den heutigen medizinischen Möglichkeiten oft über Jahre gut kontrolliert werden. 
+                                    Bei Metastasen in Lunge, Leber und Gehirn sind die Prognosen schlechter.
+                                </p>
                             </li>
-                            <li data-camera-position="-10, 0, 0">Knochen
-                                <p>Knochen wie die Hüfte sind befallen</p>
+                            <li class="whole-model" data-camera-position="">Symptome
+                                <p>Anzeichen wie - Knochenschmerzen, Atemnot, Husten, Oberbauchschmerzen oder Gelbsucht - können auf eine metastasierte Brustkrebserkrankung hinweisen.</p>
+                            </li>
+                            <li class="whole-model" data-camera-position="">Behandlung
+                                <p>Palliative Behandlungen konzentriern sich darauf, Betroffenen ein so langes und beschwerdenarmes Leben wie möglich zu verschaffen. Dabei steht die Lebensqualität der erkrankten Personen im Zentrum.</p>
                             </li>
                          </ul>
                          <button class="go-back" data-section="section-4">Zurück</button>
+                         <!-- <button class="explore" data-section="section-4">Stadium selbst erkunden</button> -->
                      </div>
                  </div> 
              </section>
@@ -200,8 +235,14 @@
             <section class="testimonial final show-initial">
                 <!-- <span>Was ich mir von Aussenstehenden wünsche?</span> -->
                 <!-- <p class="quote">&bdquo;Von Aussenstehenden wünsche ich mir ein offenes Ohr und keine Scheu sich zu melden.<br> Jede Nachricht bedeutet unglaublich viel!&ldquo;</p> -->
-                <p class="quote">&bdquo;Nützen Sie die Zeit. Verbringen sie so viel Zeit wie möglich mit Ihren Nächsten.&ldquo;</p>
-                <span>- Erfahrung von Christian</span>
+                <!-- <p class="quote">&bdquo;Ich bin dankbar, dass ich in so guten Händen aufgehoben war während der Krankheitszeit.&ldquo;</p>
+                <span>- Erfahrung von Brigitte</span> -->
+
+                <!-- <p class="quote">&bdquo;Meine Botschaft: Immer an der Hoffnung auf Heilung festhalten.&ldquo;</p>
+                <span>- Erfahrung einer Gynäkologin</span> -->
+
+                <p class="quote">&bdquo;Gib niemals auf und stelle dich deinen Gefühlen. Du bist damit nicht allein.&ldquo;</p>
+                <span>- Erfahrung von Nicole</span>
             </section>
     
             <section class="cta end show-initial">
@@ -211,50 +252,54 @@
                 </div>
                 <div class="cta-flex">
                     <ul>
+                        <li><a href="erfahrungen.html">Erfahrungsberichte</a></li>
+                        <li><div class="line"></div></li>
                         <li><a href="info.html">Informationen für Betroffene</a></li>
                         <li><div class="line"></div></li>
                         <li><a href="info.html#angehörige">Informationen für Angehörige</a></li>
                         <li><div class="line"></div></li>
-                        <li><a href="erfahrungen.html">Erfahrungsberichte</a></li>
-                        <li><div class="line"></div></li>
-                        <li><a href="spenden.html">Spenden</a></li>
+                        <li><a href="spenden.html">Unterstützen</a></li>
                         <li><div class="line"></div></li>
                     </ul>
                 </div>
             </section>
 
-            <!-- Canvas -->
-            <div class="canvas particles">
-                <canvas class="webgl"></canvas>
-            </div>
-
-            <!-- Audio -->
-            <div class="audio">
-                <audio id="backgroundaudio" autoplay loop muted>
-                    <source src="./audio/MP Score Piano.mp3" type="audio/mpeg">
-                    <source src="./audio/MP Score Piano.wav" type="audio/wav">
-                  Your browser does not support the audio element.
-                  </audio>
-                  <a onClick="togglePlay()">
-                    <div class="switch">
-                      <div class="equalizer">
-                          <div class="equalizer__bar"></div>
-                          <div class="equalizer__bar"></div>
-                          <div class="equalizer__bar"></div>
-                          <div class="equalizer__bar"></div>
-                          <div class="equalizer__bar"></div>
-                          <div class="equalizer__bar"></div>
-                      </div>
-                    </div>
-                    </a>                    
-            </div>
-
-            <!-- <i class="fa-solid fa-arrow-up-long icon"></i> -->
 
     </main>
     
-    <footer class="show-initial">
-        <!-- <p>Design & Development by Kim | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p> -->
+    <footer class="show-initial footer">
+        <!-- Audio -->
+        <div class="audio">
+            <audio id="backgroundaudio" autoplay loop muted>
+                <source src="./audio/MP Score Piano.mp3" type="audio/mpeg">
+                <source src="./audio/MP Score Piano.wav" type="audio/wav">
+              Your browser does not support the audio element.
+              </audio>
+              <a onClick="togglePlay()">
+                <div class="switch">
+                  <div class="equalizer">
+                      <div class="equalizer__bar"></div>
+                      <div class="equalizer__bar"></div>
+                      <div class="equalizer__bar"></div>
+                      <div class="equalizer__bar"></div>
+                      <div class="equalizer__bar"></div>
+                      <div class="equalizer__bar"></div>
+                  </div>
+                </div>
+                </a>                    
+        </div>
+
+        <div class="impressum">
+            <p>
+                <a href="#">Impressum | Datenschutz</a>
+            </p>
+        </div>
+
+        <div class="to-top">
+            <a href="#top">
+                <img src="./images/ArrowUp.svg" alt="">
+            </a>
+        </div>
     </footer>
     
     
